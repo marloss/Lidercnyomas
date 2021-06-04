@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Access player controller")]
     public CharacterController playerController;
-    [SerializeField]float inputX;
-    [SerializeField] float inputY;
+    public float inputX;
+    public float inputY;
     [Header("Player movement ability attributes")]
     public float speed = 12;
     [Space]
@@ -18,11 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [Space]
     Vector3 velocity;
 
-    public Image current_Weapon_image;
 
-    public float yPos;
-    public float xPos;
-    public float view_bobbing_amount;
     //public float gravity = -9.81f;
     //[Space]
     //public Transform groundCheckPos;
@@ -35,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerController = this.gameObject.GetComponentInChildren<CharacterController>();
         }
-        yPos = current_Weapon_image.rectTransform.position.y;
-        xPos = current_Weapon_image.rectTransform.position.x;
+
     }
 
     void Update()
@@ -45,8 +40,7 @@ public class PlayerMovement : MonoBehaviour
         //GroundCheck();
         //FallOnGroundPhysx();
         //Jump();
-        Vector3 rect = new Vector3(xPos + (Mathf.Sin(-inputX) * view_bobbing_amount), yPos + (Mathf.Sin(-inputY) * view_bobbing_amount));
-        current_Weapon_image.rectTransform.position = rect;
+
 
     }
     #region Movement Ability Functions
