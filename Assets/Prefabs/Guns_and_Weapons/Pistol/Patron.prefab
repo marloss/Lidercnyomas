@@ -109,8 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa432aa85cae154c9a66cabd79bcac2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_hitscan: 0
+  is_hitscan: 1
   ammunition: 0
-  y_offset: 70
+  y_offset: 50
   widht: 0.7098816
   height: 0.7098816

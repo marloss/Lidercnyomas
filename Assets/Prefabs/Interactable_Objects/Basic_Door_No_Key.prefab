@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 1973078266}
   - component: {fileID: 2864762462886181134}
   m_Layer: 0
-  m_Name: Basic_Door
+  m_Name: Basic_Door_No_Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

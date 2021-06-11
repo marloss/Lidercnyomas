@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -13,4 +14,9 @@ public class Weapon : MonoBehaviour
     [Space]
     public float widht;
     public float height;
+
+    private void Start()
+    {
+        gameObject.GetComponent<Image>().rectTransform.localScale = new Vector3(widht, height);
+    }
 }

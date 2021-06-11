@@ -31,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
         {
             playerController = this.gameObject.GetComponentInChildren<CharacterController>();
         }
-
     }
 
     void Update()
@@ -40,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         //GroundCheck();
         //FallOnGroundPhysx();
         //Jump();
-
-
     }
     #region Movement Ability Functions
     public void Movement()

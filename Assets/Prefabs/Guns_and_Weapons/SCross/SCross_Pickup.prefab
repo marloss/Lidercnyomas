@@ -127,3 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_Pickedup: 0
+  vertical_speed: 1
+  altitude: 1
+  _position: {x: 0, y: 0, z: 0}
