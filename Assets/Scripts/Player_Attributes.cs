@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class Player_Attributes : MonoBehaviour
 {
@@ -58,11 +59,12 @@ public class Player_Attributes : MonoBehaviour
         if (!is_Inventory_Opened)
             Weapon_Fire();
         View_Bobbing(true);
-        //current_Wielded_Weapon.GetComponent<Image>().rectTransform.position = new Vector3(50, 50);
     }
 
     private void LateUpdate()
     {
+        if (!is_Inventory_Opened)
+            OpenPauseMenu();
         Switch_Weapons();
         Open_Inventory();
     }
@@ -87,9 +89,26 @@ public class Player_Attributes : MonoBehaviour
             }
         }
     }
+    private void OpenPauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !gamemanager.GetComponent<_GameManager>().canvas_Storage.GetComponent<Canvas_Storage>()._Pause_Menu.activeInHierarchy)
+        {
+            gamemanager.GetComponent<_GameManager>().canvas_Storage.GetComponent<Canvas_Storage>()._Pause_Menu.SetActive(true);
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponentInChildren<_Camera_Script>().enabled = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && gamemanager.GetComponent<_GameManager>().canvas_Storage.GetComponent<Canvas_Storage>()._Pause_Menu.activeInHierarchy)
+        {
+            gamemanager.GetComponent<_GameManager>().canvas_Storage.GetComponent<Canvas_Storage>()._Pause_Menu.SetActive(false);
+            GetComponent<PlayerMovement>().enabled = true;
+            GetComponentInChildren<_Camera_Script>().enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
     public void Open_Inventory()
     {
-        if (!is_Inventory_Opened && Input.GetKeyDown(KeyCode.Space))
+        if (!is_Inventory_Opened && Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             GetComponent<PlayerMovement>().enabled = false;
             GetComponentInChildren<_Camera_Script>().enabled = false;
@@ -98,7 +117,7 @@ public class Player_Attributes : MonoBehaviour
             is_Inventory_Opened = true;
             Display_Inventory();
         }
-        else if (is_Inventory_Opened && Input.GetKeyDown(KeyCode.Space))
+        else if (is_Inventory_Opened && Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             GetComponent<PlayerMovement>().enabled = true;
             GetComponentInChildren<_Camera_Script>().enabled = true;
@@ -110,6 +129,7 @@ public class Player_Attributes : MonoBehaviour
     private void Display_Inventory() //Refresh inventory display everytime it's openeds
     {
         string str;
+        inventory.GetComponent<GameManager>().button_interaction_dropdown.gameObject.SetActive(false);
         for (int i = 0; i < inventory_Items.Count; i++)
         {
             str = inventory_Items[i];
@@ -209,7 +229,7 @@ public class Player_Attributes : MonoBehaviour
     }
     void Item_Pickup(Collider item)
     {
-        int index = 0; //Necessary?
+        //int index = 0; //Necessary?
         bool contains = false;
         switch (inventory_Items.Count > 0)
         {
@@ -225,6 +245,11 @@ public class Player_Attributes : MonoBehaviour
                 {
                     Destroy(item.gameObject);
                     //Implement: item addition
+                }
+                else
+                {
+                    inventory_Items.Add(item.name);
+                    Destroy(item.gameObject);
                 }
                 break;
             case false:
@@ -249,17 +274,19 @@ public class Player_Attributes : MonoBehaviour
 
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         switch (other.gameObject.tag)
         {
             case "Weapon_Pickup":
-                if (inventory_Items.Count < 6)
+                //if (inventory_Items.Count < 6 && weapon_holster.Capacity < 4)
                     Weapon_Pickup(other);
                 break;
             case "Key":
-                if (inventory_Items.Count < 6)
+                //if (inventory_Items.Count < 6)
+                    Item_Pickup(other);
+                break;
+            case "Dead_Drop":
                     Item_Pickup(other);
                 break;
         }

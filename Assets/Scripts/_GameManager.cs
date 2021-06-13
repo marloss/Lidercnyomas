@@ -9,6 +9,8 @@ public class _GameManager : MonoBehaviour
     [Header("Scene_Name")]
     public string current_Scene_Name;
     Scene current_Scene;
+    [Header("Access Canvas Storage")]
+    public GameObject canvas_Storage;
     [Header("Prefabs and Gameobject storage")]
     public GameObject[] weapon_Prefabs;
     [Space]

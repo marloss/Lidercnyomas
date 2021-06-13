@@ -7,6 +7,7 @@ TagManager:
   - Weapon_Pickup
   - GameManager
   - Key
+  - Dead_Drop
   layers:
   - Default
   - TransparentFX

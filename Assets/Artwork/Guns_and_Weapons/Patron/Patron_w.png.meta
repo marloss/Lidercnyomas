@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: a97e42722fb86c34aa12409221be3805
+guid: c8939da98db2c9740a1be0c74be87514
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5080758157877973588
-    second: SCross_0
+      213: 1996108545302293924
+    second: Patron_0
+  - first:
+      213: 4068437976032384661
+    second: Patron_w_0
+  - first:
+      213: 49218144385613742
+    second: Patron_w_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,7 +46,7 @@ TextureImporter:
     mipBias: -100
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -88,11 +94,77 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SCross_0
+      name: Patron_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad6dd7652a93bb10800000000000000
+      internalID: 1996108545302293924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Patron_w_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5969e10a8cef57830800000000000000
+      internalID: 4068437976032384661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Patron_w_1
       rect:
         serializedVersion: 2
         x: 0
@@ -106,8 +178,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4521cf520aa728640800000000000000
-      internalID: 5080758157877973588
+      spriteID: eafbb9c34abdea000800000000000000
+      internalID: 49218144385613742
       vertices: []
       indices: 
       edges: []
