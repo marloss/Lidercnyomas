@@ -108,7 +108,7 @@ public class Player_Attributes : MonoBehaviour
     }
     public void Open_Inventory()
     {
-        if (!is_Inventory_Opened && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (!is_Inventory_Opened && Input.GetKeyDown(KeyCode.E))
         {
             GetComponent<PlayerMovement>().enabled = false;
             GetComponentInChildren<_Camera_Script>().enabled = false;
@@ -117,7 +117,7 @@ public class Player_Attributes : MonoBehaviour
             is_Inventory_Opened = true;
             Display_Inventory();
         }
-        else if (is_Inventory_Opened && Input.GetKeyDown(KeyCode.KeypadEnter))
+        else if (is_Inventory_Opened && Input.GetKeyDown(KeyCode.E))
         {
             GetComponent<PlayerMovement>().enabled = true;
             GetComponentInChildren<_Camera_Script>().enabled = true;
@@ -126,7 +126,7 @@ public class Player_Attributes : MonoBehaviour
             is_Inventory_Opened = false;
         }
     }
-    private void Display_Inventory() //Refresh inventory display everytime it's openeds
+    public void Display_Inventory() //Refresh inventory display everytime it's openeds
     {
         string str;
         inventory.GetComponent<GameManager>().button_interaction_dropdown.gameObject.SetActive(false);
@@ -274,8 +274,12 @@ public class Player_Attributes : MonoBehaviour
 
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
+        /// <summary>
+        /// Note to self: Refresh Item list, whenever adding new one
+        /// </summary>
         switch (other.gameObject.tag)
         {
             case "Weapon_Pickup":

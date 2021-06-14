@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public TMPro.TMP_Dropdown button_interaction_dropdown; //Thank you Stack Overflow!
     [Space]
     public Vector3 button_interaction_dropdown_position_offset;
+    [Space]
+    public GameObject selected_item;
     //[Header("Pause menu attributes")]
     
 
@@ -32,11 +34,11 @@ public class GameManager : MonoBehaviour
     //////////////////////////////////
     ///Inventory Item interaction:
     /////////////////////////////////
-
     public void OpenInventoryInteractionDropdown(Button _button)
     {
         if (_button.GetComponent<Image>().sprite != null) //If the clicked cell has an item stored
         {
+            selected_item = _button.gameObject;
             IdentifyInventoryItemType(_button.GetComponent<Image>().sprite,button_interaction_dropdown);
             button_interaction_dropdown.transform.position = _button.transform.position + button_interaction_dropdown_position_offset;
             button_interaction_dropdown.gameObject.SetActive(true);
@@ -44,7 +46,6 @@ public class GameManager : MonoBehaviour
             button_interaction_dropdown.captionText.text = _button.GetComponent<Image>().sprite.name;
         }
     }
-
     private void IdentifyInventoryItemType(Sprite _item, TMPro.TMP_Dropdown _dropdown)
     {
         List<string> item_attributes;
@@ -80,6 +81,29 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+    }
+    public void Dropdown_interaction()
+    {
+        //Debug.Log(button_interaction_dropdown.itemText.text);
+        Debug.Log(button_interaction_dropdown.options[button_interaction_dropdown.value].text);
+        Debug.Log(selected_item.GetComponent<Image>().sprite.name);
+        switch (button_interaction_dropdown.itemText.text)
+        {
+            case "Use item":
+
+                break;
+            case "About":
+
+                break;
+            case "Move Item":
+
+                break;
+            case "Destroy":
+                gamemanager.GetComponent<_GameManager>().player.GetComponent<Player_Attributes>().inventory_Items.Remove(selected_item.GetComponent<Image>().sprite.name);
+                gamemanager.GetComponent<_GameManager>().player.GetComponent<Player_Attributes>().Display_Inventory();
+                break;
+        }
+        //Debug.Log(button_interaction_dropdown.itemText.text);
     }
     #endregion
     #region Pause Menu and Options Menu
