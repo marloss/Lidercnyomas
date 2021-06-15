@@ -1,5 +1,5 @@
 # Lidércnyomás
 
-An open source Horror game, made in Unity with C#.
+Lidércnyomás (or Succubus) is an open-source, episodic, horror game, where the player is put against a series of nightmares.
 
-Description to be added. Stay tuned!
+Mátyás a participater of his nightmares, has to fight for his life against all odds. Although, he's vulnerable, Mátyás has tools to use against the succubus.
