@@ -20,6 +20,7 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
+        _Gamemanager = GameObject.FindGameObjectWithTag("GameManager");
         door_animation = GetComponent<Animator>();
     }
 
