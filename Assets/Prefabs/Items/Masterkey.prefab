@@ -50,8 +50,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.0045776, y: 1, z: 1.4182243}
+  m_Center: {x: -0.04159546, y: 0, z: -0.012163162}
 --- !u!222 &4401861605897106459
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 22c7735960f12704eb27de87cf1c587d, type: 3}
+  m_Sprite: {fileID: 4854293845318456632, guid: 468c83252ad751442a74a179fb27ee48, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 22c7735960f12704eb27de87cf1c587d, type: 3}
+  m_Sprite: {fileID: 4854293845318456632, guid: 468c83252ad751442a74a179fb27ee48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

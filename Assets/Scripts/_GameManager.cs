@@ -19,4 +19,23 @@ public class _GameManager : MonoBehaviour
     public Music[] soundtrack;
     [Header("Inventory Item attributes")]
     public GameObject[] item_list;
+    [Space]
+    public string[] item_Name_List;
+    [Space]
+    public Sprite[] item_Sprite_List;
+    [Space]
+    public string[] item_Description_List;
+
+    private void LateUpdate()
+    {
+        Debug_Commands();
+    }
+
+    private void Debug_Commands()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
 }

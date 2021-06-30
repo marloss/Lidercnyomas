@@ -115,15 +115,16 @@ public class Player_Attributes : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             inventory.SetActive(true);
             is_Inventory_Opened = true;
+            gamemanager.GetComponent<_GameManager>().canvas_Storage.GetComponent<Canvas_Storage>()._Inventory.GetComponent<GameManager>().about_window.SetActive(false);
             Display_Inventory();
         }
         else if (is_Inventory_Opened && Input.GetKeyDown(KeyCode.E))
         {
             GetComponent<PlayerMovement>().enabled = true;
             GetComponentInChildren<_Camera_Script>().enabled = true;
-            Cursor.lockState = CursorLockMode.Locked;
             inventory.SetActive(false);
             is_Inventory_Opened = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
     public void Display_Inventory() //Refresh inventory display everytime it's openeds
@@ -137,10 +138,47 @@ public class Player_Attributes : MonoBehaviour
             {
                 if (gamemanager.GetComponent<_GameManager>().item_list[n].name.Contains(str))
                 {
-                    inventory_Spaces[i].GetComponent<Image>().sprite = gamemanager.GetComponent<_GameManager>().item_list[n].GetComponent<Image>().sprite;
+                    inventory_Spaces[i].GetComponent<Image>().sprite = gamemanager.GetComponent<_GameManager>().item_Sprite_List[n];
                     inventory_Spaces[i].GetComponent<Image>().color = new Color(inventory_Spaces[i].GetComponent<Image>().color.r, inventory_Spaces[i].GetComponent<Image>().color.g, inventory_Spaces[i].GetComponent<Image>().color.b, 255);
                 }
             }          
+        }
+    }
+    public void Clean_Up_Inventory()
+    {
+        string str;
+        if (weapon_holster_index > weapon_holster.Count) //Reset weapon holster index if not matching
+            weapon_holster_index = weapon_holster.Count - 1;
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (i < inventory_Items.Count)
+            {
+                str = inventory_Items[i];
+                for (int n = 0; n < inventory_Items.Count; n++)
+                {
+                    if (gamemanager.GetComponent<_GameManager>().item_list[n].name.Contains(str))
+                    {
+                        inventory_Spaces[i].GetComponent<Image>().sprite = gamemanager.GetComponent<_GameManager>().item_Sprite_List[n];
+                        inventory_Spaces[i].GetComponent<Image>().color = new Color(inventory_Spaces[i].GetComponent<Image>().color.r, inventory_Spaces[i].GetComponent<Image>().color.g, inventory_Spaces[i].GetComponent<Image>().color.b, 255);
+                    }
+                }
+            }
+            else
+            {
+                inventory_Spaces[i].GetComponent<Image>().sprite = null;
+                inventory_Spaces[i].GetComponent<Image>().color = new Color(inventory_Spaces[i].GetComponent<Image>().color.r, inventory_Spaces[i].GetComponent<Image>().color.g, inventory_Spaces[i].GetComponent<Image>().color.b, 0);
+            }
+
+            //str = inventory_Items[i];
+            //for (int n = 0; n < gamemanager.GetComponent<_GameManager>().item_list.Length; n++)
+            //{
+            //    if (gamemanager.GetComponent<_GameManager>().item_list[n].name.Contains(str))
+            //    {
+            //        inventory_Spaces[i].GetComponent<Image>().sprite = gamemanager.GetComponent<_GameManager>().item_Sprite_List[n];
+            //        inventory_Spaces[i].GetComponent<Image>().color = new Color(inventory_Spaces[i].GetComponent<Image>().color.r, inventory_Spaces[i].GetComponent<Image>().color.g, inventory_Spaces[i].GetComponent<Image>().color.b, 255);
+            //    }
+            //}          
         }
     }
     void Switch_Weapons()
@@ -148,24 +186,22 @@ public class Player_Attributes : MonoBehaviour
         int old_index = weapon_holster_index;
         if (Input.GetKeyDown(KeyCode.Alpha1) && weapon_holster.Count > 0)
         {
-            weapon_holster_index = 0;
-            Misc_Weapon_Swap(old_index, weapon_holster_index); //Calling function everytime, so viewbobbing isn't buggy
+            Misc_Weapon_Swap(old_index, 0); //Calling function everytime, so viewbobbing isn't buggy
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2) && weapon_holster.Count > 1)
         {
-            weapon_holster_index = 1;
-            Misc_Weapon_Swap(old_index, weapon_holster_index);
+            Misc_Weapon_Swap(old_index, 1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3) && weapon_holster.Count > 2)
         {
-            weapon_holster_index = 2;
-            Misc_Weapon_Swap(old_index, weapon_holster_index);
+            Misc_Weapon_Swap(old_index, 2);
         }
     }
-    private void Misc_Weapon_Swap(int old_value, int new_value)
+    public void Misc_Weapon_Swap(int old_value, int new_value)
     {
         weapon_holster[old_value].SetActive(false);
         weapon_holster[new_value].SetActive(true);
+        weapon_holster_index = new_value;
         current_Wielded_Weapon = weapon_holster[new_value];
         weapon_reference_position_offset.y = weapon_holster[new_value].GetComponent<Weapon>().y_offset;
     }
